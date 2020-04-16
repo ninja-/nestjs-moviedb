@@ -1,16 +1,16 @@
 ## How to run
-Install modules with `yarn`
+Install modules with `yarn`  
 yarn run start OR ts-node src/main.ts
-
+  
 ## Test urls:
-
-http://localhost:3000/movies - all movies
-
-http://localhost:3000/movies/randomTest/?genres=Crime,Drama&duration=100&limit=1 (human friendly endpoint)
-`curl localhost:3000/movies/random --data '{"genres": ["Comedy","Drama","Biography"]}' -H 'Content-Type: application/json' -X GET`
-(endpoint with validation)
-
-Run tests: `yarn run test:e2e`
+  
+http://localhost:3000/movies - all movies  
+  
+http://localhost:3000/movies/randomTest/?genres=Crime,Drama&duration=100&limit=1 (human friendly endpoint)  
+`curl localhost:3000/movies/random --data '{"genres": ["Comedy","Drama","Biography"]}' -H 'Content-Type: application/json' -X GET`  
+(endpoint with validation)  
+  
+Run tests: `yarn run test:e2e`  
 
 ```
  PASS  test/app.e2e-spec.ts (12.891s)
