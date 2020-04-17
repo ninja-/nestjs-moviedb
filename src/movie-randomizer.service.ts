@@ -100,7 +100,7 @@ export class MovieRandomizerService {
         }) as MovieWithScore[]
         movies = movies.sort((a, b) => b.score - a.score)
 
-        console.log(movies)
+        // console.log(movies)
         if (query.limit) {
             movies = movies.slice(0, query.limit)
         }

@@ -74,23 +74,39 @@ describe('AppController (e2e)', () => {
     // - handling limit
     // - empty genres[]
 
-    const args = {
-      limit: 10,
-      genres: ["Comedy", "Drama"],
-      duration: 110
-    }
+    const args = [
+      {
+        test: "Basic",
+        limit: 10,
+        genres: ["Comedy", "Drama"],
+        duration: 110
+      },
+      {
+        test: "No genres, limit 1",
+        limit: 1,
+        genres: [],
+        duration: 110
+      },
+      {
+        test: "No genres with limit",
+        limit: 10,
+        genres: [],
+        duration: 110
+      },
+    ]
 
     // Store a snapshot
     // I am a big fan of snapshot testing lately :D
     // That comes from experience in a project where changing say user model broke 50 different tests because of hardcoded data :(
     // And with snapshots this could be automated by using jest --updateSnapshots
 
-    const response = await request(app.getHttpServer())
+    for (let test of args) {
+      const response = await request(app.getHttpServer())
       .get('/movies/random')
-      .send(args)
+      .send(test)
 
-    const body = response.body
-    expect(body).toMatchSnapshot()
-
+      const body = response.body
+      expect(body).toMatchSnapshot(test.test)
+    }
   })
 });
