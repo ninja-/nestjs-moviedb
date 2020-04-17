@@ -77,13 +77,17 @@ export class MovieRandomizerService {
 
         if (duration) {
             // Max 10 minutes difference
-            movies = movies.filter(movie => Math.abs((+movie.runtime) - duration) < 10)
+            movies = movies.filter(movie => Math.abs((+movie.runtime) - duration) <= 10)
         }
         
         if (!genres) {
             // Randomize order
             // return movies[Math.floor(Math.random() * movies.length)]
             this.shuffleArray(movies);
+
+            if (query.limit) {
+                movies = movies.slice(0, query.limit)
+            }    
             return movies;
         }
 
@@ -96,6 +100,7 @@ export class MovieRandomizerService {
         }) as MovieWithScore[]
         movies = movies.sort((a, b) => b.score - a.score)
 
+        console.log(movies)
         if (query.limit) {
             movies = movies.slice(0, query.limit)
         }
